@@ -1,0 +1,31 @@
+﻿@model PROG_POE_02.Models.Ulogin
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Create an Account</h2>
+<h6>Please fill in the following details in order to create a new account.</h6>
+
+<div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
+    <form method="post" action="/Account/Register">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="Password1" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button> <br />
+        <a href="/Home/Index" class="link-dark">Back</a>
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+            </script>
+        }
+    </form>
+</div>

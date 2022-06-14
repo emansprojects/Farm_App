@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Verify";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body style="background-color: #D5DBDB ">
+    <h1>Login</h1>
+    <h6>Please fill in the following information to log in.</h6>
+
+    <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
+        <form method="post" action="/Account/Verify">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="text" id="id" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                </script>
+            }
+        </form>
+    </div>
+
+</body>
+</html>     
