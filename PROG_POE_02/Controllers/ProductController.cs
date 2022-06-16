@@ -1,6 +1,8 @@
 ﻿using PROG_POE_02.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,39 +23,51 @@ namespace PROG_POE_02.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddProduct(string product_name, string product_description, string product_type)
+        public ActionResult AddProduct(string product_name, string product_description, string product_type, string username)
         {
             //adding to Products table 
             Product prod = new Product();
 
             prod.Product_name = product_name;
-            prod.Product_Description = product_description;
+            prod.Product_description = product_description;
             prod.Product_Type = product_type;
+            prod.username = username;
            
             //adding to db
-            PROG_TASK2 db = new PROG_TASK2();
+            farmcentralEntities db = new farmcentralEntities();
             db.Products.Add(prod);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
-            return View();
         }
 
         public ActionResult ViewProducts(string farmerID, string searching)
         {
+            farmcentralEntities db = new farmcentralEntities();
+
+
             //displaying data where username equals current user
-            PROG_TASK2 db = new PROG_TASK2();
 
             //return View(db.Products.Where(m => m.id.Equals(farmerID)).ToList());
-            //return View();
 
-            var prods = from p in db.Products select p;
 
-            if(!String.IsNullOrEmpty(searching))
+            //return View(db.Products.Where(m => m.username.Equals(Account.Name)).ToList());
+
+            HttpCookie cookieObj = Request.Cookies["user_id"];
+            string _websiteValue = cookieObj["id"];
+
+            List<Product> data = db.Products.Where(x => x.username.Equals(_websiteValue)).ToList();
+
+          
+
+            if (!String.IsNullOrEmpty(searching))
             {
+                var prods = from p in db.Products select p;
                 prods = prods.Where(s => s.Product_name.Contains(searching));
+                return View(prods.ToList());
             }
-            return View(prods.ToList());
+           
+            return View(data);
 
         }
         //query parameter

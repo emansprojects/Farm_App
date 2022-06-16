@@ -129,38 +129,39 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Elogin.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Flogin.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Helper.cs" />
     <Compile Include="Models\Product.cs">
-      <DependentUpon>PROG_DB.tt</DependentUpon>
+      <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Products.cs" />
-    <Compile Include="Models\PROG_DB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PROG_DB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PROG_DB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PROG_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PROG_DB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PROG_DB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Register.cs">
-      <DependentUpon>PROG_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Ulogin.cs">
-      <DependentUpon>PROG_DB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,24 +175,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\employeeclipart.jpg" />
     <Content Include="Images\farmerclipart.png" />
-    <Content Include="Models\PROG_DB.Context.tt">
+    <Content Include="Images\fieldpic.png" />
+    <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PROG_DB.Context.cs</LastGenOutput>
-      <DependentUpon>PROG_DB.edmx</DependentUpon>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PROG_DB.tt">
+    <Content Include="Models\DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PROG_DB.edmx</DependentUpon>
-      <LastGenOutput>PROG_DB.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\PROG_DB.edmx">
+    <EntityDeploy Include="Models\DB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PROG_DB.Designer.cs</LastGenOutput>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\PROG_DB.edmx.diagram">
-      <DependentUpon>PROG_DB.edmx</DependentUpon>
+    <Content Include="Models\DB.edmx.diagram">
+      <DependentUpon>DB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -224,6 +226,11 @@
     <Content Include="Views\Product\ViewProducts.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Home\example.cshtml" />
+    <Content Include="Views\Account\EmployeeVerify.cshtml" />
+    <Content Include="Views\Account\EmployeeRegister.cshtml" />
+    <Content Include="Views\Employee\AddFarmer.cshtml" />
+    <Content Include="Views\Employee\ViewFarmers.cshtml" />
+    <Content Include="Views\Employee\ViewFarmerProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

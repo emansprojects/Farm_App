@@ -1,34 +1,40 @@
 ﻿@{
     ViewBag.Title = "AddModules";
 }
-<body style="background-color: #D5DBDB ">
-    <h2>Add new Modules</h2>
-    <label>Please fill in all the inputs to add a new module.</label>
 
-    <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
-        <form method="post" action="/Product/AddProduct">
-        
-            <div class="mb-3">
-                <label for="product_name" class="form-label">Product Name</label>
-                <input type="text" id="product_name" name="product_name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="product_description" class="form-label">Product Description</label>
-                <input type="text" id="product_description" name="product_description" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="product_type" class="form-label">Product Type</label>
-                <input type="text" id="product_type" name="product_type" class="form-control" required>
-            </div>
-         
-            <button type="submit" class="btn btn-primary">Add</button>
-            <br />
+@{
+    HttpCookie cookieObj = Request.Cookies["user_id"];
+    string _websiteValue = cookieObj["id"];
 
-            <br />
-          
+    <body style="background-color: #D5DBDB ">
+        <h2>Add new Modules</h2>
+        <label>Please fill in all the inputs to add a new module.</label>
 
-        </form>
-    </div>
-</body>
+        <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
+            <form method="post" action="/Product/AddProduct">
+
+                <div class="mb-3">
+                    <label for="product_name" class="form-label">Product Name</label>
+                    <input type="text" id="product_name" name="product_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="product_description" class="form-label">Product Description</label>
+                    <input type="text" id="product_description" name="product_description" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="product_type" class="form-label">Product Type</label>
+                    <input type="text" id="product_type" name="product_type" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">username</label>
+                    <input type="text" value=@_websiteValue id="username" name="username" class="form-control" readonly>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </body>
+}
 
 

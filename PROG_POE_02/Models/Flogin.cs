@@ -12,14 +12,19 @@ namespace PROG_POE_02.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Flogin
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Flogin()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public int id { get; set; }
         public string username { get; set; }
-        public string Product_name { get; set; }
-        public string Product_description { get; set; }
-        public string Product_Type { get; set; }
+        public string password { get; set; }
     
-        public virtual Flogin Flogin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
