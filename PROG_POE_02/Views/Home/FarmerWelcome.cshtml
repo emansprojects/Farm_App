@@ -1,0 +1,78 @@
+﻿<br />
+<center>
+    <h1 style="font-family: 'Times New Roman'; font-weight: bold; align-items:center">Welcome To Farm Central</h1>
+    <p>BRICK-AND-MORTAR STORE</p>
+</center>
+
+<div class="view">
+
+    <form class="my-form">
+        <p style="font-family: 'Times New Roman'; text-align: center;font-size:medium">
+            Almost all industries depend on agricultural raw products.
+            Agriculture is the backbone of all countries. Each country's GDP, economy, development, etc. depends on agricultural growth.
+            According to many studies, goats were the first domesticated animal. They are the cleanest of animals and more select feeders
+            than cows, chickens, or dogs. They will not eat contaminated food or ground food.
+            <br />
+            <br />
+            Please choose an option from below:
+        </p>
+
+        <img src="~/Images/WELpic.jpg"
+             width="500"
+             height="300" />
+    </form>
+
+    <div class="view-2">
+        <div class="one">
+            <a href="/Product/AddProduct" class="img-1">
+                <img src="~/Images/plus.png"
+                     width="100"
+                     height="100" />
+            </a>
+            <h6>Add Product</h6>
+        </div>
+
+        <div class="one">
+            <a href="/Product/ViewProducts" class="img-2">
+                <img src="~/Images/fruitbasket.jpg"
+                     width="100"
+                     height="100" />
+            </a>
+            <h6>View Products</h6>
+        </div>
+    </div>
+</div>
+
+<style>
+    .my-form {
+        padding: 100px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .view {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .view-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .img-1 {
+        display: flex;
+    }
+
+    .one {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 3%;
+    }
+
+    .img-2 {
+        display: flex;
+    }
+</style>

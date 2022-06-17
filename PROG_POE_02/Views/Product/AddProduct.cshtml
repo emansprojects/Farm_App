@@ -5,33 +5,43 @@
 @{
     HttpCookie cookieObj = Request.Cookies["user_id"];
     string _websiteValue = cookieObj["id"];
-
-    <body style="background-color: #D5DBDB ">
-        <h2>Add new Modules</h2>
-        <label>Please fill in all the inputs to add a new module.</label>
+    <h1 style="font-family: 'Times New Roman'; font-weight: bold ">Farm Central</h1>
+    <body>
+        <h2 style="font-family: 'Times New Roman'">Add a new Product</h2>
+        <label style="font-family: 'Times New Roman'">Please fill in all the inputs to add a new Product.</label>
 
         <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
             <form method="post" action="/Product/AddProduct">
 
                 <div class="mb-3">
-                    <label for="product_name" class="form-label">Product Name</label>
+                    <label for="product_name" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Product Name</label>
                     <input type="text" id="product_name" name="product_name" class="form-control" required>
+                    <br />
                 </div>
+
                 <div class="mb-3">
-                    <label for="product_description" class="form-label">Product Description</label>
+                    <label for="product_description" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Product Description</label>
                     <input type="text" id="product_description" name="product_description" class="form-control" required>
+                    <br />
                 </div>
+
                 <div class="mb-3">
-                    <label for="product_type" class="form-label">Product Type</label>
+                    <label for="product_type" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Product Type</label>
                     <input type="text" id="product_type" name="product_type" class="form-control" required>
+                    <br />
                 </div>
 
                 <div class="mb-3">
-                    <label for="username" class="form-label">username</label>
+                    <label for="username" class="form-label" style="font-size: large; font-family: 'Times New Roman'">username</label>
                     <input type="text" value=@_websiteValue id="username" name="username" class="form-control" readonly>
+                    <br />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary" style="font-size: large; font-family: 'Times New Roman'; background-color: darkseagreen">Add</button>
+                <br />
+                <br />
+                <a href="/Home/FarmerWelcome" class="link-dark" style="font-size: large; font-family: 'Times New Roman'; color:black">Back</a>
+
             </form>
         </div>
     </body>

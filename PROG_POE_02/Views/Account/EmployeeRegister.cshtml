@@ -1,24 +1,27 @@
-﻿@model PROG_POE_02.Models.Elogin
+﻿
+@model PROG_POE_02.Models.Elogin
 
 @{
-    ViewBag.Title = "Employee Register";
+    ViewBag.Title = "Register";
 }
 
-<h2>Create an Account</h2>
-<h6>Please fill in the following details in order to create a new account.</h6>
+<h1 style="font-family: 'Times New Roman'; font-weight: bold ">Farm Central</h1>
+<h2 style=" font-family: 'Times New Roman'">Create an Account</h2>
+<h4 style=" font-family: 'Times New Roman'">Please fill in the following details in order to create a new account.</h4>
 
 <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
-    <form method="post" action="/Account/Register">
+    <form method="post" action="/Account/EmployeeRegister">
         <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
+            <label for="username" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Username</label>
             <input type="text" id="username" name="username" class="form-control" required>
+            <br />
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
+            <br />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button> <br />
-        <a href="/Home/Index" class="link-dark">Back</a>
+        <button type="submit" class="btn btn-primary" style="font-size: large; font-family: 'Times New Roman'; background-color: darkseagreen ">Create</button>
         @if (ViewBag.Message != null)
         {
             <script type="text/javascript">
@@ -27,5 +30,8 @@
             };
             </script>
         }
+        <br />
+        <br />
+        <a href="/Home/example" class="link-dark" style="font-size: large; font-family: 'Times New Roman'; color:black">Back</a>
     </form>
 </div>

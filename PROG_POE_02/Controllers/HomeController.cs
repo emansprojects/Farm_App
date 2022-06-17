@@ -15,6 +15,7 @@ namespace PROG_POE_02.Controllers
 
         public ActionResult About()
         {
+            //ABOUT FARM CENTRAL 
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -22,12 +23,12 @@ namespace PROG_POE_02.Controllers
 
         public ActionResult Contact()
         {
+            //CONTACT DETAILS
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
-      
         public ActionResult Employee()
         {
             return View("Verify","Account");
@@ -40,11 +41,25 @@ namespace PROG_POE_02.Controllers
 
         public ActionResult SelectionScreen()
         {
+            //A USER CAN SELECT IF THEY ARE A FARMER OR AN EMPLOYEE 
+            return View();
+        }
+
+        public ActionResult Welcome()
+        {
+            //WELCOME PAGE FOR EMPLOYEE
+            return View();
+        }
+
+        public ActionResult FarmerWelcome()
+        {
+            //WELCOME PAGE FOR FARMER
             return View();
         }
 
         public ActionResult example()
         {
+            //WEBSITE ETRANCE 
             return View();
         }
     }

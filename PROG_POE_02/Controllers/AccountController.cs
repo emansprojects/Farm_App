@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
+using System.Web.Helpers;
+
 using System.Web.Mvc;
 using PROG_POE_02.Models;
 
@@ -11,6 +12,7 @@ namespace PROG_POE_02.Controllers
 {
     public class AccountController : Controller
     {
+        //FARMER ACCOUNT
         
         // GET: Account
         [HttpGet]
@@ -19,163 +21,169 @@ namespace PROG_POE_02.Controllers
             return View();
         }
 
+        //GET FARMER LOGIN
         public ActionResult Verify()
         {
             return View();
         }
 
+        public string GetMD5(string text)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            byte[] result = md5.Hash;
+            StringBuilder str = new StringBuilder();
+            for(int i = 1; i < result.Length; i++)
+            {
+                str.Append(result[i].ToString("x2"));
+            }
+            return str.ToString();
+        }
 
+        //POST FARMER LOGIN
         [HttpPost]
         public ActionResult Verify(string username, string password)
         {
-            string passwordHash = password;
+            //FARMER LOGIN 
 
-            Account.Name = username;
-         
-
-            //user login 
+            //CONNECTING TO DB
             farmcentralEntities db = new farmcentralEntities();
+            Flogin fl = new Flogin();
+
+            //HASHING PASSWORD 
+            string hashpassword = password;
+         
+            //FARMER DETAILS TABLE QUERY USING LINQ
             Flogin user = db.Flogins.FirstOrDefault(x => x.username.Equals(username));
+
             
 
-            //if no user then show this
+            //IF FARMER DOES OT EXIST
             if (user == null)
             {
 
             }
             else
             {
-                //if password equals to password that user entered then allow them to enter
-                if (user.password.Equals(passwordHash))
+                //IF PASSWORD IS CORRECT ALLOW FARMER TO ENTER
+                if (user.password.Equals(hashpassword))
                 {
-                    //logged in
+                    //LOGGED IN
                     HttpCookie cookie = new HttpCookie("user_id");
                     cookie["id"] = user.username;
+
                     cookie.Expires = DateTime.Now.AddMonths(1);
                     Response.Cookies.Add(cookie);
                     ViewBag.Message = string.Format("successful");
-                    return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("FarmerWelcome", "Home");
                 }
                 else
                 {
-                    //password incorect
+                    //PASSWORD ICORRECT
                     ViewBag.Message = string.Format("incorrect");
-                    return RedirectToAction("Contact", "Home");
+                    return RedirectToAction("Error", "Shared");
                 }
             }
-            return RedirectToAction("About", "Home");
+
+            //IF NONE WORK
+            return RedirectToAction("example", "Home");
         }
 
-        public ActionResult Register()
-        {
-            return View();
-        }
+        //EMPLOYEE ACCOUNT 
 
-        [HttpPost]
-        public ActionResult Register(string username, string password)
-        {
-            try
-            {
-                //entering into db tables
-                farmcentralEntities db = new farmcentralEntities();
-                Flogin user = new Flogin();
-
-                //var keyNew = Helper.GeneratePassword(10);
-                //password = Helper.EncodePassword(user.password, keyNew);
-                //user.password = password;
-
-                user.username = username;
-                user.password = password;
-
-                db.Flogins.Add(user);
-                db.SaveChanges();
-
-                ViewBag.Message = string.Format("user added!");
-                return RedirectToAction("Verify", "Account");
-            }
-            catch (Exception e)
-            {
-                ViewBag.Message = string.Format("Unsuccessful entry! Please try again!");
-                return RedirectToAction("Register", "Account");
-            }
-        }
-
-
-        //employee Account 
-
+        //GET EMPLOYEE LOGIN
         public ActionResult EmployeeVerify()
         {
             return View();
         }
 
+        //POST EMPLOYEE LOGIN
         [HttpPost]
         public ActionResult EmployeeVerify(string username, string password)
         {
-            string passwordHash = password;
+            //EMPLOYEE LOG IN 
 
-            Account.Name = username;
-
-
-            //user login 
+            //CONECTING TO DB
             farmcentralEntities db = new farmcentralEntities();
+            //EMPLOYEE DETAILS TABLE QUERY USING LINQ
             Elogin user = db.Elogins.FirstOrDefault(x => x.username.Equals(username));
 
+            bool verified = Crypto.VerifyHashedPassword(user.password, password);
 
-            //if no user then show this
+            //IF EMPLOYEE DOES NOT EXIST
             if (user == null)
             {
 
             }
             else
             {
-                //if password equals to password that user entered then allow them to enter
-                if (user.password.Equals(passwordHash))
+                //IF PASSWORD IS CORRECT ALLOW FARMER TO ENTER
+                if (verified)
                 {
-                    //logged in
+                    //LOGGED IN
                     ViewBag.Message = string.Format("successful");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Welcome", "Home");
                 }
                 else
                 {
-                    //password incorect
+                    //PASSWORD INCORRECT
                     ViewBag.Message = string.Format("incorrect");
-                    return RedirectToAction("Contact", "Home");
+                    return RedirectToAction("Error", "Shared");
                 }
             }
-            return RedirectToAction("About", "Home");
+            //IF ONE WORK
+            return RedirectToAction("example", "Home");
         }
 
+        //GET EMPLOYEE REGISTER
         public ActionResult EmployeeRegister()
         {
             return View();
         }
 
+        //POST EMPLOYEE REGISTER
         [HttpPost]
         public ActionResult EmployeeRegister(string username, string password)
         {
             try
             {
-                //entering into db tables
+                //CONECT TO DB
                 farmcentralEntities db = new farmcentralEntities();
-                Elogin user = new Elogin();
+
+                
 
                 //var keyNew = Helper.GeneratePassword(10);
                 //password = Helper.EncodePassword(user.password, keyNew);
                 //user.password = password;
 
-                user.username = username;
-                user.password = password;
+                
 
-                db.Elogins.Add(user);
-                db.SaveChanges();
+                using (db = new farmcentralEntities())
+                {
+                    //CONNECT TO TABLE IN DB
+                    Elogin user = new Elogin();
+                    //ASSIGNING VALUES TO TABLE ITEMS
+                    user.username = username;
+                    //user.password = password;
+                    var hash = Crypto.HashPassword(password);
+                    user.password = hash;
+                    //ADDING ITEMMS TO DB TABLE 
+                    db.Elogins.Add(user);
+                    db.SaveChanges();
+                }
+                    
 
+                //IF THE ITEMS ARE ADDED SUCCESSFULLY
                 ViewBag.Message = string.Format("user added!");
-                return RedirectToAction("Verify", "Account");
+                return RedirectToAction("EmployeeVerify", "Account");
             }
             catch (Exception e)
             {
+                return Content(e.Message);
+                //IF ITEMS ARE NOT ADDED
                 ViewBag.Message = string.Format("Unsuccessful entry! Please try again!");
-                return RedirectToAction("Register", "Account");
+                return RedirectToAction("Error", "Shared");
             }
         }
     }

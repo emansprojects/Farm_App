@@ -1,11 +1,6 @@
 ﻿
-@{
-    ViewBag.Title = "Verify";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<h1 style="font-family: 'Times New Roman'; font-weight: bold ">Farm Central</h1>
+<h2 style=" font-family: 'Times New Roman'">Farmer Login</h2>
 
 <!DOCTYPE html>
 <html>
@@ -13,21 +8,23 @@
     <title>Login Form</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body style="background-color: #D5DBDB ">
-    <h1>Login</h1>
-    <h6>Please fill in the following information to log in.</h6>
+<body>
+   
+    <h6 style="font-size: large; font-family: 'Times New Roman'">Please fill in the following information to log in.</h6>
 
     <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
         <form method="post" action="/Account/Verify">
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Username</label>
                 <input type="text" id="username" name="username" class="form-control" required>
+                <br />
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <label for="exampleInputPassword1" class="form-label" style="font-size: large; font-family: 'Times New Roman'">Password</label>
                 <input type="password" id="password" name="password" class="form-control" required>
+                <br />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" style="font-size: large; font-family: 'Times New Roman'; background-color:darkseagreen">Log in</button>
             @if (ViewBag.Message != null)
             {
                 <script type="text/javascript">
@@ -36,6 +33,9 @@
             };
                 </script>
             }
+            <br />
+            <br />
+            <a href="/Home/example" class="link-dark" style="font-size: large; font-family: 'Times New Roman'; color:black">Back</a>
         </form>
     </div>
 

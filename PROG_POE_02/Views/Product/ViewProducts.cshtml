@@ -4,41 +4,42 @@
 @{
     ViewBag.Title = "Index";
 }
-<body style="background-color: #D5DBDB ">
-    <h1>Modules Display</h1>
-    <h6>Following are the modules that you have added.</h6>
-    <a href="/Product/ViewProducts" class="link-primary">Products</a>
-    <br />
+<body>
+    <h1 style="font-family: 'Times New Roman'; font-weight: bold ">Farm Central</h1>
+        <h2 style="font-family: 'Times New Roman'">Products</h2>
+        <h4 style="font-family: 'Times New Roman'">List of products.</h4>
+        
+        <br />
 
-    @*<input type="search" id="searching" name="q" placeholder="Search...">
-        <button>Search</button>*@
-    <form method="get" action="/Product/ViewProducts">
-        @Html.TextBox("searching")
-        <input type="submit" value="submit" />
+        @*<input type="search" id="searching" name="q" placeholder="Search...">
+            <button>Search</button>*@
+        <form method="get" action="/Product/ViewProducts">
+            @Html.TextBox("searching", null, new { @class = "form-control", @placeholder = "Product Type" })
+            <input type="submit" value="submit" />
 
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Product Description</th>
-                        <th scope="col">Product Type</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @for (int i = 0; i < Model.ToList().Count; i++)
-                    {
+            <div>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@Model.ToList()[i].Product_name</td>
-                            <td>@Model.ToList()[i].Product_description</td>
-                            <td>@Model.ToList()[i].Product_Type</td>
+                            <th scope="col" style="font-size: large; font-family: 'Times New Roman'">Product Name</th>
+                            <th scope="col" style="font-size: large; font-family: 'Times New Roman'">Product Description</th>
+                            <th scope="col" style="font-size: large; font-family: 'Times New Roman'">Product Type</th>
                         </tr>
-                    }
+                    </thead>
 
-                </tbody>
-            </table>
-        </div>
-        <a href="/Home/Index" class="link-primary">Back</a>
+                    <tbody>
+                        @for (int i = 0; i < Model.ToList().Count; i++)
+                        {
+                            <tr>
+                                <td style="font-size: large; font-family: 'Times New Roman'">@Model.ToList()[i].Product_name</td>
+                                <td style="font-size: large; font-family: 'Times New Roman'">@Model.ToList()[i].Product_description</td>
+                                <td style="font-size: large; font-family: 'Times New Roman'">@Model.ToList()[i].Product_Type</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <a href="/Home/FarmerWelcome" class="link-primary" style="font-size: large; font-family: 'Times New Roman'">Back</a>
         </form>
 </body>

@@ -4,33 +4,38 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Create an Account</h2>
-<h6>Please fill in the following details in order to create a new account.</h6>
+<h1 style="font-family: 'Times New Roman'; font-weight: bold">Farm Central</h1>
+<h2 style="font-family: 'Times New Roman'">Create a new Farmer</h2>
+<h4 style="font-family: 'Times New Roman'">Please fill in the following details in order to create a new Farmer</h4>
 
 <div style="margin-left: 30%; margin-right: 30%; margin-top: 3%; margin-bottom: 5%">
     <form method="post" action="/Employee/AddFarmer">
         <div class="mb-3">
-            <label for="Name" class="form-label">Name</label>
+            <label for="Name" class="form-label" style="font-family: 'Times New Roman'; font-size: large;">Name</label>
             <input type="text" id="Name" name="Name" class="form-control" required>
+            <br />
         </div>
         <div class="mb-3">
-            <label for="Surname" class="form-label">Surname</label>
+            <label for="Surname" class="form-label" style="font-family: 'Times New Roman'; font-size: large;">Surname</label>
             <input type="text" id="Surname" name="Surname" class="form-control" required>
+            <br />
         </div>
         <div class="mb-3">
-            <label for="Date" class="form-label">Date</label>
+            <label for="Date" class="form-label" style="font-family: 'Times New Roman'; font-size: large;">Date</label>
             <input type="date" id="Date" name="Date" class="form-control" required>
+            <br />
         </div>
         <div class="mb-3">
-            <label for="username" class="form-label">Email</label>
+            <label for="username" class="form-label" style="font-family: 'Times New Roman'; font-size: large;">Email</label>
             <input type="text" id="username" name="username" class="form-control" required>
+            <br />
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label" style="font-family: 'Times New Roman'; font-size: large;">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
+            <br />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button> <br />
-        <a href="/Home/Index" class="link-dark">Back</a>
+        <button type="submit" class="btn btn-primary" style="font-family: 'Times New Roman'; font-size: large; background-color: darkseagreen">Add</button> 
         @if (ViewBag.Message != null)
         {
             <script type="text/javascript">
@@ -39,5 +44,8 @@
             };
             </script>
         }
+        <br />
+        <br />
+        <a href="/Home/Welcome" class="link-dark" style="font-family: 'Times New Roman'; font-size: large;">Back</a>
     </form>
 </div>

@@ -4,10 +4,11 @@
 @{
     ViewBag.Title = "Index";
 }
-<body style="background-color: #D5DBDB ">
-    <h1>Modules Display</h1>
-    <h6>Following are the modules that you have added.</h6>
-  
+<h1 style="font-family: 'Times New Roman'; font-weight: bold">Farm Central</h1>
+<h2 style="font-family: 'Times New Roman'">Farmers</h2>
+<h4 style="font-family: 'Times New Roman'">The following is the list of farmers available</h4>
+
+<body>
     <br />
 
     @*<input type="search" id="searching" name="q" placeholder="Search...">
@@ -15,11 +16,11 @@
     <form method="get" action="/Employee/ViewFarmers">
         <div>
             <table class="table">
+
                 <thead>
                     <tr>
-                        <th scope="col">Farmer Name</th>
-                        <th scope="col">View Products</th>
-                        
+                        <th scope="col" style="font-family: 'Times New Roman'; font-size: large;">Farmer Name</th>
+                        <th scope="col" style="font-family: 'Times New Roman'; font-size: large;">View Products</th>
                     </tr>
                 </thead>
 
@@ -27,16 +28,16 @@
                     @for (int i = 0; i < Model.ToList().Count; i++)
                     {
                         <tr>
-                            <td>@Model.ToList()[i].username</td>
-                            <td>
+                            <td style="font-family: 'Times New Roman'; font-size: large;">@Model.ToList()[i].username</td>
+                            <td style="font-family: 'Times New Roman'; font-size: large;">
                                 <a href="/Employee/ViewFarmerProducts/@Model.ToList()[i].username" class="link-primary">View</a>
                             </td>
                         </tr>
                     }
-
                 </tbody>
+
             </table>
         </div>
-        <a href="/Home/Index" class="link-primary">Back</a>
+        <a href="/Home/Welcome" class="link-primary" style="font-family: 'Times New Roman'; font-size: large;">Back</a>
     </form>
 </body>
